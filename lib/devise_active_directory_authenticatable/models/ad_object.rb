@@ -137,7 +137,7 @@ module Devise
       def find_from_activedirectory local_params = {}
         ad_objs = find_activedirectory_objs local_params
         guids = ad_objs.collect { |obj| obj[:objectguid] }
-        scoped.where(:objectguid => guids)
+        where(:objectguid => guids)
       end
 
       ##
@@ -153,7 +153,7 @@ module Devise
         db_objs_by_guid = {}
 
         #Make a hash map to do quick lookups
-        scoped.where(:objectguid => guids).each do |db_obj|
+        where(:objectguid => guids).each do |db_obj|
           db_objs_by_guid[db_obj.objectguid] = db_obj
         end
 
